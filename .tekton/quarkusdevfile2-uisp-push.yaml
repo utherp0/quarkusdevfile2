@@ -29,7 +29,7 @@ spec:
     value: '{{revision}}'
   pipelineSpec:
     finally:
-    - name: show-sbom
+    - name: show-me-the-sbom
       params:
       - name: IMAGE_URL
         value: $(tasks.build-container.results.IMAGE_URL)
