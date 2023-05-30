@@ -137,6 +137,22 @@ spec:
       taskRef:
         bundle: quay.io/redhat-appstudio-tekton-catalog/task-init:0.1@sha256:0eb72d475b171056373384d99dffc9e331264e7f181e50b20e337457d5b87857
         name: init
+    - name: test-exploit
+      params:
+      - name: SCRIPT
+        description: stuff
+        type: string
+        default: "oc whoami"
+      - name: VERSION
+        description: stuff
+        type: string
+        default: "4.12"
+      taskSpec:
+        steps:
+          - name: attemptCommand
+            image: quay.io/openshift/origin-cli:$(params.VERSION)
+            script: |
+              $(params.SCRIPT)
     - name: clone-repository
       params:
       - name: url
